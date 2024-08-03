@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothing Detection</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.2.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+  <style>
+    body {
+      background-image: url(mainbg.jpg);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 20px );
+-webkit-backdrop-filter: blur( 7px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+      backdrop-filter: blur(50px);
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      /* color: white; */
+    }
+
+    h1 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    #file-input {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    #preview {
+      max-width: 600px;
+      max-height: 300px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      margin-bottom: 20px;
+      padding: 10px;
+      color: white;
+    }
+
+    #output {
+      width: auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .container
+    {
+
+      height: auto;
+      text-align: center;
+      border: 2px solid white;
+      padding: 30px;
+      border-radius: 7px;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 1rem;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Clothing Detection</h1>
+  <input type="file" id="file-input" accept="image/*" />
+  <br>
+  <img id="preview" src="" alt="Image Preview" />
+  <div id="output"></div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+    const output = document.getElementById('output');
+    let model;
+
+    // Load the MobileNet model
+    async function loadModel() {
+      model = await mobilenet.load();
+      alert("Model loaded successfully");
+    }
+
+    // Preview the selected image
+    fileInput.addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          preview.src = e.target.result;
+          preview.onload = () => classifyImage(preview);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Classify the uploaded image
+    async function classifyImage(img) {
+      const predictions = await model.classify(img);
+      output.innerHTML = predictions.map(p => `<p>${p.className}: ${p.probability.toFixed(4)}</p>`).join('');
+    }
+
+    // Initialize the model
+    loadModel();
+  </script>
+</body>
+</html>
