@@ -6,7 +6,6 @@ This project is a web-based application designed to detect and classify clothing
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Setup Instructions](#setup-instructions)
 - [How It Works](#how-it-works)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
@@ -45,4 +44,15 @@ Contributions are welcome! If you have any suggestions or improvements, feel fre
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+<br>
+<br>
+<h1>Sample Images</h1>
+<img width="1440" alt="Screenshot 2024-08-04 at 12 18 45 AM" src="https://github.com/user-attachments/assets/0e909712-e40c-4870-bd47-ed59b2178822">
+<br>
+<img width="1440" alt="Screenshot 2024-08-04 at 12 18 35 AM" src="https://github.com/user-attachments/assets/a6a28d35-3312-475c-be71-b3f334e464eb">
+<br>
+<img width="1440" alt="Screenshot 2024-08-04 at 12 18 26 AM" src="https://github.com/user-attachments/assets/28322be7-be2c-4162-87bb-246623326e8e">
+<br>
+<img width="1440" alt="Screenshot 2024-08-04 at 12 18 07 AM" src="https://github.com/user-attachments/assets/1a4bb990-e953-4158-b2d5-8b25e2ac1136">
+<br>
 
